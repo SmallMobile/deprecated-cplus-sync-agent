@@ -1,2 +1,2 @@
 # cplus-sync-agent
-Serviço windows que sincroniza informacoes entre o C-Plus e o FieldControl
+Sincronizador de ordem de serviços e atividades entre o C-Plus e o Field Control
