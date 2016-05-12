@@ -11,10 +11,10 @@ namespace FieldControl.CPlusSync.Core.Converters
     {
         public virtual string GetStringStatus(ActivityStatus status)
         {
-            if (status == ActivityStatus.Scheduled) return "agendado";
+            if (status == ActivityStatus.Scheduled) return "agendada";
             if (status == ActivityStatus.InProgress) return "em andamento";
-            if (status == ActivityStatus.Done) return "concluído";
-            if (status == ActivityStatus.Reported) return "reportado como problema";
+            if (status == ActivityStatus.Done) return "concluída";
+            if (status == ActivityStatus.Reported) return "reportada como problema";
             if (status == ActivityStatus.Canceled) return "cancelada";
 
             throw new ActivityConverterException(status.ToString());
@@ -24,10 +24,10 @@ namespace FieldControl.CPlusSync.Core.Converters
         {
             statusName = statusName.ToLowerInvariant().Trim();
 
-            if (statusName == "agendado") return ActivityStatus.Scheduled;
+            if (statusName == "agendada") return ActivityStatus.Scheduled;
             if (statusName == "em andamento") return ActivityStatus.InProgress;
-            if (statusName == "concluído") return ActivityStatus.Done;
-            if (statusName == "reportado como problema") return ActivityStatus.Reported;
+            if (statusName == "concluída") return ActivityStatus.Done;
+            if (statusName == "reportada como problema") return ActivityStatus.Reported;
             if (statusName == "cancelada") return ActivityStatus.Canceled;
 
             throw new ActivityConverterException(statusName);

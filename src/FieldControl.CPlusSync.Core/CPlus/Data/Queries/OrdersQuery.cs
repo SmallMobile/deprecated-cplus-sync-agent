@@ -44,7 +44,7 @@ namespace FieldControl.CPlusSync.Core.CPlus.Queries
                                 inner join os_status on os_status.codstatus = os_ordemservico.codstatus
                                 inner join cliente on cliente.codcli = os_ordemservico.codcli
                             where
-                                os_ordemservico.dataagenda = '{0}' os_ordemservico.flagexterno = 'Y'";
+                                os_ordemservico.dataagenda = '{0}' and os_ordemservico.flagexterno = 'Y'";
 
         //os_ordemservico.dataagenda = {0} and 
 
