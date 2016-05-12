@@ -74,6 +74,7 @@
     <Compile Include="CPlus\Models\Customer.cs" />
     <Compile Include="CPlus\Data\Queries\OrdersQuery.cs" />
     <Compile Include="CPlus\Models\Order.cs" />
+    <Compile Include="Exceptions\ServiceNotFoundException.cs" />
     <Compile Include="Exceptions\LatitudeLongitudeCouldNotBeDecodedException.cs" />
     <Compile Include="Exceptions\EmployeeNotFoundException.cs" />
     <Compile Include="Exceptions\ActivityConverterException.cs" />

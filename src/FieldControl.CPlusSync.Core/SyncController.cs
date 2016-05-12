@@ -37,7 +37,6 @@ namespace FieldControl.CPlusSync.Core
             var activityConveter = new ActivityConverter(
                 services: services,
                 employees: employees,
-                createFieldControlService: new CreateFieldControlService(client),
                 customerFieldControlService: new CustomerFieldControlService(client, geocoder)
             );
 

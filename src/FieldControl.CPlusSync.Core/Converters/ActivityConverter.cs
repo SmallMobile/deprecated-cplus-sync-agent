@@ -40,24 +40,22 @@ namespace FieldControl.CPlusSync.Core.Converters
     {
         private readonly List<Service> _services = null;
         private readonly List<Employee> _employees = null;
-        private readonly ICreateFieldControlService _createFieldControlService = null;
         private readonly ICustomerFieldControlService _customerFieldControlService = null;
 
-        public ActivityConverter(List<Service> services, 
+        public ActivityConverter(List<Service> services,
                                  List<Employee> employees,
-                                 ICreateFieldControlService createFieldControlService,
                                  ICustomerFieldControlService customerFieldControlService)
         {
             _services = services;
             _employees = employees;
-            _createFieldControlService = createFieldControlService;
             _customerFieldControlService = customerFieldControlService;
         }
 
         public virtual int GetEmployeeIdByName(string employeeName)
         {
             var employee = _employees.FirstOrDefault(e => e.Name.ToLowerInvariant().Trim() == employeeName.ToLowerInvariant().Trim());
-            if (employee == null) {
+            if (employee == null)
+            {
                 throw new EmployeeNotFoundException(employeeName);
             }
 
@@ -67,8 +65,9 @@ namespace FieldControl.CPlusSync.Core.Converters
         public virtual int GetServiceIdByName(string serviceName)
         {
             var service = _services.FirstOrDefault(e => e.Description.ToLowerInvariant().Trim() == serviceName.ToLowerInvariant().Trim());
-            if (service == null) {
-                service = _createFieldControlService.Create(serviceName);
+            if (service == null)
+            {
+                throw new ServiceNotFoundException(serviceName);
             }
 
             return service.Id;
@@ -79,11 +78,13 @@ namespace FieldControl.CPlusSync.Core.Converters
             return _customerFieldControlService.GetOrCreate(customer);
         }
 
-        public virtual Activity ConvertFrom(Order order) {
+        public virtual Activity ConvertFrom(Order order)
+        {
 
             var customer = GetCustomer(order.Customer);
 
-            var activity = new Activity(customer) {
+            var activity = new Activity(customer)
+            {
                 Identifier = order.Identifier,
                 Description = order.Description,
                 ScheduledTo = order.ScheduledDate,
@@ -103,6 +104,6 @@ namespace FieldControl.CPlusSync.Core.Converters
             return activity;
         }
 
-  
+
     }
 }
