@@ -44,7 +44,6 @@ namespace FieldControl.CPlusSync.Core.Commands
             {
                 var activity = _conveter.ConvertFrom(order);
                 var request = new CreateActivityRequest(activity);
-
                 _fieldControlClient.Execute(request);
             }
         }

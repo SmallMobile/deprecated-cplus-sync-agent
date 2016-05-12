@@ -83,7 +83,7 @@ namespace FieldControl.CPlusSync.Core.Converters
 
             var customer = GetCustomer(order.Customer);
 
-            return new Activity(customer) {
+            var activity = new Activity(customer) {
                 Identifier = order.Identifier,
                 Description = order.Description,
                 ScheduledTo = order.ScheduledDate,
@@ -94,6 +94,13 @@ namespace FieldControl.CPlusSync.Core.Converters
                 ServiceId = GetServiceIdByName(order.ServiceName),
                 CustomerId = customer.Id
             };
+
+            if (activity.Duration <= 0)
+            {
+                activity.Duration = 1;
+            }
+
+            return activity;
         }
 
   
