@@ -46,8 +46,6 @@ namespace FieldControl.CPlusSync.Core.CPlus.Queries
                             where
                                 os_ordemservico.dataagenda = '{0}' and os_ordemservico.flagexterno = 'Y'";
 
-        //os_ordemservico.dataagenda = {0} and 
-
         public List<Order> Execute(DateTime scheduledDate)
         {
             var orders = new List<Order>();

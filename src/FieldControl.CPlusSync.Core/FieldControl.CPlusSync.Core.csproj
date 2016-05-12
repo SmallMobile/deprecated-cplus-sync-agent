@@ -38,6 +38,10 @@
       <HintPath>..\..\packages\FirebirdSql.Data.FirebirdClient.4.10.0.0\lib\net45\FirebirdSql.Data.FirebirdClient.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Geocoding, Version=3.4.0.0, Culture=neutral, PublicKeyToken=7c714700b88674c7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Geocoding.net.3.4.0\lib\net40\Geocoding.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -70,10 +74,15 @@
     <Compile Include="CPlus\Models\Customer.cs" />
     <Compile Include="CPlus\Data\Queries\OrdersQuery.cs" />
     <Compile Include="CPlus\Models\Order.cs" />
+    <Compile Include="Exceptions\LatitudeLongitudeCouldNotBeDecodedException.cs" />
     <Compile Include="Exceptions\EmployeeNotFoundException.cs" />
     <Compile Include="Exceptions\ActivityConverterException.cs" />
+    <Compile Include="FieldControl\CustomerFieldControlService.cs" />
+    <Compile Include="FieldControl\ICustomerFieldControlService.cs" />
     <Compile Include="FieldControl\CreateFieldControlService.cs" />
     <Compile Include="FieldControl\ICreateFieldControlService.cs" />
+    <Compile Include="Google\AppSettingsGeoCoderConfiguration.cs" />
+    <Compile Include="Google\IGeoCoderConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SyncController.cs" />
   </ItemGroup>

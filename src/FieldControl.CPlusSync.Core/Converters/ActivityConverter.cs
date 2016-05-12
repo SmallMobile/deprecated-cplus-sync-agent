@@ -4,6 +4,8 @@ using FieldControl.CPlusSync.Core.Exceptions;
 using FieldControlApi.Resources;
 using FieldControl.CPlusSync.Core.FieldControl;
 using System.Linq;
+using FC = FieldControlApi.Resources;
+using System;
 
 namespace FieldControl.CPlusSync.Core.Converters
 {
@@ -39,14 +41,17 @@ namespace FieldControl.CPlusSync.Core.Converters
         private readonly List<Service> _services = null;
         private readonly List<Employee> _employees = null;
         private readonly ICreateFieldControlService _createFieldControlService = null;
+        private readonly ICustomerFieldControlService _customerFieldControlService = null;
 
         public ActivityConverter(List<Service> services, 
                                  List<Employee> employees,
-                                 ICreateFieldControlService createFieldControlService)
+                                 ICreateFieldControlService createFieldControlService,
+                                 ICustomerFieldControlService customerFieldControlService)
         {
             _services = services;
             _employees = employees;
             _createFieldControlService = createFieldControlService;
+            _customerFieldControlService = customerFieldControlService;
         }
 
         public virtual int GetEmployeeIdByName(string employeeName)
@@ -69,9 +74,16 @@ namespace FieldControl.CPlusSync.Core.Converters
             return service.Id;
         }
 
+        private FC.Customer GetCustomer(CPlus.Models.Customer customer)
+        {
+            return _customerFieldControlService.GetOrCreate(customer);
+        }
+
         public virtual Activity ConvertFrom(Order order) {
 
-            return new Activity() {
+            var customer = GetCustomer(order.Customer);
+
+            return new Activity(customer) {
                 Identifier = order.Identifier,
                 Description = order.Description,
                 ScheduledTo = order.ScheduledDate,
@@ -79,8 +91,11 @@ namespace FieldControl.CPlusSync.Core.Converters
                 Duration = (order.Duration * 60),
                 Status = new ActivityStatusConverter().GetStatusByName(order.StatusName),
                 EmployeeId = GetEmployeeIdByName(order.EmployeeName),
-                ServiceId = GetServiceIdByName(order.ServiceName)
+                ServiceId = GetServiceIdByName(order.ServiceName),
+                CustomerId = customer.Id
             };
         }
+
+  
     }
 }
