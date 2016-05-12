@@ -34,8 +34,8 @@
       <HintPath>..\packages\AssertProperties.1.0.2.0\lib\net45\AssertProperties.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="FieldControlApi, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FieldControlApi.1.0.3.0\lib\net452\FieldControlApi.dll</HintPath>
+    <Reference Include="FieldControlApi, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FieldControlApi.1.0.4.0\lib\net452\FieldControlApi.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">

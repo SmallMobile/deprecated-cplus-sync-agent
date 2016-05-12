@@ -1,14 +1,9 @@
 ﻿using FieldControl.CPlusSync.Core.Converters;
 using FieldControl.CPlusSync.Core.CPlus.Data;
 using FieldControl.CPlusSync.Core.CPlus.Models;
-using FieldControlApi;
-using FieldControlApi.Requests;
 using FieldControlApi.Resources;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FieldControl.CPlusSync.Core.Commands
 {
@@ -17,6 +12,7 @@ namespace FieldControl.CPlusSync.Core.Commands
         private readonly IEnumerable<Order> _orders = null;
         private readonly IEnumerable<Activity> _activities = null;
         private readonly ActivityStatusConverter _statusConverter = null;
+        private readonly OrderDao _orderDao = null;
 
         public UpdateCPlusOrderStatusCommand(IEnumerable<Order> orders,
                                              IEnumerable<Activity> activities,
@@ -24,6 +20,7 @@ namespace FieldControl.CPlusSync.Core.Commands
         {
             _orders = orders;
             _activities = activities;
+            _orderDao = orderDao;
             _statusConverter = new ActivityStatusConverter();
         }
 
@@ -31,16 +28,24 @@ namespace FieldControl.CPlusSync.Core.Commands
             return _orders.FirstOrDefault(o => o.Identifier.ToLowerInvariant().Trim() == activity.Identifier.ToLowerInvariant().Trim());
         }
 
+        private bool StillSameStatus(Activity activity, Order order)
+        {
+            var fieldControlStatus = _statusConverter.GetStringStatus(activity.Status);
+            return fieldControlStatus.ToLowerInvariant().Trim() == order.StatusName.ToLowerInvariant().Trim();
+        }
+
         public void Run()
         {
             foreach (var activity in _activities) {
+
                 var order = GetOrder(activity);
-                if (order == null) {
+            
+                if (order == null || StillSameStatus(activity, order)) {
                     continue;
                 }
 
-                //_statusConverter.
-                    
+                order.StatusName = _statusConverter.GetStringStatus(activity.Status);
+                _orderDao.ChangeStatus(order);
             }
         }
     }

@@ -8,7 +8,7 @@ namespace FieldControl.CPlusSync.Core.CPlus.Configurations
         {
             get
             {
-                return ConfigurationManager.AppSettings["connectionString"];
+                return ConfigurationManager.AppSettings["cplus.connectionString"];
             }
         }
     }

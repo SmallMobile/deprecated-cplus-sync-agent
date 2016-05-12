@@ -1,11 +1,6 @@
 ﻿using FieldControl.CPlusSync.Core.CPlus.Configurations;
 using FieldControl.CPlusSync.Core.CPlus.Models;
 using FirebirdSql.Data.FirebirdClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FieldControl.CPlusSync.Core.CPlus.Data
 {
@@ -20,7 +15,7 @@ namespace FieldControl.CPlusSync.Core.CPlus.Data
 
         public void ChangeStatus(Order order)
         {
-            var sqlCommand = @"UPDATE os_ordemservico SET CODSTATUS = (SELECT CODSTATUS FROM os_status WHERE status = '" + order.StatusName + "') WHERE (numos = 1)";
+            var sqlCommand = @"UPDATE os_ordemservico SET CODSTATUS = (SELECT CODSTATUS FROM os_status WHERE status = '" + order.StatusName + "') WHERE (numos = " + order.Identifier + ")";
 
             using (FbConnection connection = new FbConnection(_configuration.ConnnectionString))
             {
