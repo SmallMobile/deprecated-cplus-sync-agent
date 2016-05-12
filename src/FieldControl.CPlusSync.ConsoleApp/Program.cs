@@ -8,8 +8,10 @@ namespace FieldControl.CPlusSync.ConsoleApp
     {
         static void Main(string[] args)
         {
-            DateTime syncDate = DateTime.Today;
-            if (args.Length > 0) {
+            //DateTime syncDate = DateTime.Today;
+            DateTime syncDate = new DateTime(2016, 5, 6);
+            if (args.Length > 0)
+            {
                 syncDate = DateTime.ParseExact(args[0], "yyyy-MM-dd", CultureInfo.InvariantCulture);
             }
 
