@@ -42,7 +42,9 @@ namespace FieldControl.CPlusSync.Core.CPlus.Queries
                                                    on os_prodserv.codos = os_ordemservico.codos
                                 inner join os_tecnico on os_tecnico.codtec = os_ordemservico.codtec
                                 inner join os_status on os_status.codstatus = os_ordemservico.codstatus
-                                inner join cliente on cliente.codcli = os_ordemservico.codcli";
+                                inner join cliente on cliente.codcli = os_ordemservico.codcli
+                            where
+                                os_ordemservico.dataagenda = {0} and os_ordemservico.flagexterno = 'Y'";
 
 
         public List<Order> Execute(DateTime scheduledDate)
@@ -53,7 +55,7 @@ namespace FieldControl.CPlusSync.Core.CPlus.Queries
             {
                 connection.Open();
 
-                using (FbCommand command = new FbCommand(sqlQuery, connection))
+                using (FbCommand command = new FbCommand(string.Format(sqlQuery, scheduledDate.ToString("yyyy-MM-dd")), connection))
                 {
                     using (FbDataReader reader = command.ExecuteReader())
                     {
