@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\CreateFieldControlActivityCommandTests.cs" />
     <Compile Include="Converters\CustomerConverterTests.cs" />
     <Compile Include="Converters\ActivityConverterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -68,7 +69,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\src\FieldControl.CPlusSync.Core\FieldControl.CPlusSync.Core.csproj">
+    <ProjectReference Include="..\..\src\FieldControl.CPlusSync.Core\FieldControl.CPlusSync.Core.csproj">
       <Project>{489d4322-d1c0-47fd-9da9-aa1e708197fd}</Project>
       <Name>FieldControl.CPlusSync.Core</Name>
     </ProjectReference>

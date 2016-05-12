@@ -8,8 +8,8 @@ namespace FieldControl.CPlusSync.Core
 
         }
 
-        public void Sync(DateTime date) {
-     
+        public void SyncDate(DateTime date) {
+            
         }
     }
 }

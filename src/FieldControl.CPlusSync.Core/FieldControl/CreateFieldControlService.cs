@@ -15,8 +15,7 @@ namespace FieldControl.CPlusSync.Core.FieldControl
 
         public Service Create(string description) {
 
-            var service = new Service()
-            {
+            var service = new Service() {
                 Description = description,
                 Duration = 10
             };

@@ -9,7 +9,7 @@ using System.Collections.Generic;
 namespace FieldControl.CPlusSync.Core.Tests.Converters
 {
     /*
-        [  ] C-Plus Order should be converted to Field Control Activity 
+        [✓] C-Plus Order should be converted to Field Control Activity 
     */
 
     [TestFixture]
@@ -53,11 +53,6 @@ namespace FieldControl.CPlusSync.Core.Tests.Converters
                     .And(c => c.ServiceId).ShouldBe(1)
                     .And(c => c.EmployeeId).ShouldBe(3)
                 .Assert();
-        }
-
-        private object List<T>()
-        {
-            throw new NotImplementedException();
         }
     }
 }

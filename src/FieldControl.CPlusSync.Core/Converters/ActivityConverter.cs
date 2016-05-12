@@ -7,6 +7,33 @@ using System.Linq;
 
 namespace FieldControl.CPlusSync.Core.Converters
 {
+    public class ActivityStatusConverter
+    {
+        public virtual string GetStringStatus(ActivityStatus status)
+        {
+            if (status == ActivityStatus.Scheduled) return "agendado";
+            if (status == ActivityStatus.InProgress) return "em andamento";
+            if (status == ActivityStatus.Done) return "concluído";
+            if (status == ActivityStatus.Reported) return "reportado como problema";
+            if (status == ActivityStatus.Canceled) return "cancelada";
+
+            throw new ActivityConverterException(status.ToString());
+        }
+
+        public virtual ActivityStatus GetStatusByName(string statusName)
+        {
+            statusName = statusName.ToLowerInvariant().Trim();
+
+            if (statusName == "agendado") return ActivityStatus.Scheduled;
+            if (statusName == "em andamento") return ActivityStatus.InProgress;
+            if (statusName == "concluído") return ActivityStatus.Done;
+            if (statusName == "reportado como problema") return ActivityStatus.Reported;
+            if (statusName == "cancelada") return ActivityStatus.Canceled;
+
+            throw new ActivityConverterException(statusName);
+        }
+    }
+
     public class ActivityConverter
     {
         private readonly List<Service> _services = null;
@@ -42,26 +69,6 @@ namespace FieldControl.CPlusSync.Core.Converters
             return service.Id;
         }
 
-        public virtual ActivityStatus GetStatusByName(string statusName)
-        {
-            statusName = statusName.ToLowerInvariant().Trim();
-
-            if (statusName == "agendado") return ActivityStatus.Scheduled;
-            if (statusName == "em andamento") return ActivityStatus.InProgress;
-            if (statusName == "emandamento") return ActivityStatus.InProgress;
-            if (statusName == "andamento") return ActivityStatus.InProgress;
-            if (statusName == "em progresso") return ActivityStatus.InProgress;
-            if (statusName == "concluido") return ActivityStatus.Done;
-            if (statusName == "concluído") return ActivityStatus.Done;
-            if (statusName == "reportado como problema") return ActivityStatus.Reported;
-            if (statusName == "problema") return ActivityStatus.Reported;
-            if (statusName == "com problema") return ActivityStatus.Reported;
-            if (statusName == "cancelada") return ActivityStatus.Canceled;
-            if (statusName == "cancelado") return ActivityStatus.Canceled;
-
-            throw new ActivityConverterException(statusName);
-        }
-
         public virtual Activity ConvertFrom(Order order) {
 
             return new Activity() {
@@ -70,7 +77,7 @@ namespace FieldControl.CPlusSync.Core.Converters
                 ScheduledTo = order.ScheduledDate,
                 FixedStartTime = order.ScheduledTime.Substring(0, 5),
                 Duration = (order.Duration * 60),
-                Status = GetStatusByName(order.StatusName),
+                Status = new ActivityStatusConverter().GetStatusByName(order.StatusName),
                 EmployeeId = GetEmployeeIdByName(order.EmployeeName),
                 ServiceId = GetServiceIdByName(order.ServiceName)
             };

@@ -57,11 +57,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\UpdateCPlusOrderStatusCommand.cs" />
+    <Compile Include="Commands\CreateFieldControlActivityCommand.cs" />
+    <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Converters\ActivityConverter.cs" />
     <Compile Include="Converters\CustomerConverter.cs" />
     <Compile Include="CPlus\Configurations\AppSettingsConfiguration.cs" />
     <Compile Include="CPlus\Configurations\CustomConfiguration.cs" />
     <Compile Include="CPlus\Configurations\IConfiguration.cs" />
+    <Compile Include="CPlus\Data\OrderDao.cs" />
     <Compile Include="CPlus\Factories\OrderFactory.cs" />
     <Compile Include="CPlus\Models\Customer.cs" />
     <Compile Include="CPlus\Data\Queries\OrdersQuery.cs" />

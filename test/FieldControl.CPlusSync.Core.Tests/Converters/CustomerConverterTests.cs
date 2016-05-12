@@ -6,10 +6,10 @@ using NUnit.Framework;
 namespace FieldControl.CPlusSync.Core.Tests.Converters
 {
     /*
-        [  ] C-Plus Customer should be converted to Field Control Customer 
+        [✓] C-Plus Customer should be converted to Field Control Customer 
     */
 
-     [TestFixture]
+    [TestFixture]
     public class CustomerConverterTests
     {
         [Test]
