@@ -43,7 +43,7 @@ Ou seja, essas informações devem ser *exatamente* *iguais* em ambos os sistema
 
 Para o dado `Cliente`, caso não exista um cliente com o Nome exatamente iguais em ambos os sitemas, o sincronizador criará um novo cliente no Field Control.
 
-O Field Control não permite a criação de status/situação para as atividades, é preciso criar e usar os seguintes status/situação no C-Plus: 
+O Field Control não permite a criação de status/situação para as atividades, por isso, é preciso criar e usar os seguintes status/situação no C-Plus: 
  - Agendada
  - Em andamento
  - Concluída
