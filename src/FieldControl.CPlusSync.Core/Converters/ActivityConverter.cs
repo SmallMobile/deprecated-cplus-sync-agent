@@ -26,6 +26,11 @@ namespace FieldControl.CPlusSync.Core.Converters
         {
             statusName = statusName.ToLowerInvariant().Trim();
 
+            if (string.IsNullOrEmpty(statusName))
+            {
+                return ActivityStatus.Scheduled;
+            }
+
             if (statusName == "agendada") return ActivityStatus.Scheduled;
             if (statusName == "em andamento") return ActivityStatus.InProgress;
             if (statusName == "concluída") return ActivityStatus.Done;
@@ -80,7 +85,6 @@ namespace FieldControl.CPlusSync.Core.Converters
 
         public virtual Activity ConvertFrom(Order order)
         {
-
             var customer = GetCustomer(order.Customer);
 
             var activity = new Activity(customer)

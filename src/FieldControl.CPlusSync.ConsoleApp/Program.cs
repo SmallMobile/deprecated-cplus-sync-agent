@@ -18,8 +18,7 @@ namespace FieldControl.CPlusSync.ConsoleApp
 
             if (args.Length > 1)
             {
-                bool verboseLog = Convert.ToBoolean(args[1]);
-                FileLog.Verbose = true;
+                FileLog.Verbose = Convert.ToBoolean(args[1]);
             }
 
             FileLog.WriteLine(string.Format("Data para sincronizar: {0}", syncDate.ToShortDateString()));

@@ -21,7 +21,7 @@ namespace FieldControl.CPlusSync.Core.CPlus.Queries
                                 ,os_ordemservico.numos              as numero
                                 ,os_ordemservico.dataagenda         as dataagendada
                                 ,os_ordemservico.horaagenda         as horaagendada
-                                ,os_ordemservico.prazoatend         as duracao
+                                ,os_ordemservico.NUMHORASATEND      as duracao
                                 ,os_ordemservico.ocorrencia         as descricao
                                 ,os_tecnico.tecnico                 as tecnico
                                 ,os_status.status
@@ -41,7 +41,7 @@ namespace FieldControl.CPlusSync.Core.CPlus.Queries
                                 inner join produto on produto.codprod = os_prodserv.codprod 
                                                    on os_prodserv.codos = os_ordemservico.codos
                                 inner join os_tecnico on os_tecnico.codtec = os_ordemservico.codtec
-                                inner join os_status on os_status.codstatus = os_ordemservico.codstatus
+                                left join os_status on os_status.codstatus = os_ordemservico.codstatus
                                 inner join cliente on cliente.codcli = os_ordemservico.codcli
                             where
                                 os_ordemservico.dataagenda = '{0}' and os_ordemservico.flagexterno = 'Y'";
