@@ -30,7 +30,7 @@ Exemplo:
 
 As conversões das informações do C-Plus para o Field Control são todas baseadas em _convenções_.
 
-| C-Plus        | Field Control | Correspondência | Cadastra automático |
+| C-Plus        | Field Control | Correspondência | Cadastro automático |
 | ------------- | ------------- | ---------------: | :------------------: |
 | Técnico       | Colaborador |              Nome | Não |
 | Serviço/Produto     | Tipo de Atividade |   Nome | Não |
@@ -43,7 +43,7 @@ Ou seja, essas informações devem ser *exatamente* *iguais* em ambos os sistema
 
 Para o dado `Cliente`, caso não exista um cliente com o Nome exatamente iguais em ambos os sitemas, o sincronizador criará um novo cliente no Field Control.
 
-O Field Control não permite a criação de status/situação para as atividades, por isso, é preciso criar e usar os seguintes status/situação no C-Plus: 
+O Field Control não permite a criação de situação para as atividades, por isso, é preciso criar e usar os seguintes status no C-Plus: 
  - Agendada
  - Em andamento
  - Concluída
