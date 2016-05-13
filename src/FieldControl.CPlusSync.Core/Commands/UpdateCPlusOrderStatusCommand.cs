@@ -1,7 +1,10 @@
 ﻿using FieldControl.CPlusSync.Core.Converters;
 using FieldControl.CPlusSync.Core.CPlus.Data;
 using FieldControl.CPlusSync.Core.CPlus.Models;
+using FieldControl.CPlusSync.Core.Logging;
+using FieldControlApi.Exceptions;
 using FieldControlApi.Resources;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -24,7 +27,8 @@ namespace FieldControl.CPlusSync.Core.Commands
             _statusConverter = new ActivityStatusConverter();
         }
 
-        private Order GetOrder(Activity activity) {
+        private Order GetOrder(Activity activity)
+        {
             return _orders.FirstOrDefault(o => o.Identifier.ToLowerInvariant().Trim() == activity.Identifier.ToLowerInvariant().Trim());
         }
 
@@ -36,16 +40,32 @@ namespace FieldControl.CPlusSync.Core.Commands
 
         public void Run()
         {
-            foreach (var activity in _activities) {
+            FileLog.WriteLine("Atualizando atividades no C-Plus");
+            FileLog.WriteJson(_activities);
 
-                var order = GetOrder(activity);
-            
-                if (order == null || StillSameStatus(activity, order)) {
-                    continue;
+            foreach (var activity in _activities)
+            {
+                try
+                {
+                    var order = GetOrder(activity);
+
+                    FileLog.WriteJson(activity);
+                    FileLog.WriteJson(order);
+
+                    if (order == null || StillSameStatus(activity, order))
+                    {
+                        continue;
+                    }
+
+                    order.StatusName = _statusConverter.GetStringStatus(activity.Status);
+                    _orderDao.ChangeStatus(order);
+
                 }
-
-                order.StatusName = _statusConverter.GetStringStatus(activity.Status);
-                _orderDao.ChangeStatus(order);
+                catch (Exception ex)
+                {
+                    FileLog.WriteLine("Generic Error " + ex.Message);
+                    FileLog.WriteLine(ex.StackTrace);
+                }
             }
         }
     }

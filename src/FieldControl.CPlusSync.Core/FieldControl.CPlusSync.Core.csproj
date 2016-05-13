@@ -84,6 +84,7 @@
     <Compile Include="FieldControl\ICreateFieldControlService.cs" />
     <Compile Include="Google\AppSettingsGeoCoderConfiguration.cs" />
     <Compile Include="Google\IGeoCoderConfiguration.cs" />
+    <Compile Include="Logging\FileLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SyncController.cs" />
   </ItemGroup>

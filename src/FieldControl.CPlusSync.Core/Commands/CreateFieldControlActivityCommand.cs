@@ -1,6 +1,8 @@
 ﻿using FieldControl.CPlusSync.Core.Converters;
 using FieldControl.CPlusSync.Core.CPlus.Models;
+using FieldControl.CPlusSync.Core.Logging;
 using FieldControlApi;
+using FieldControlApi.Exceptions;
 using FieldControlApi.Requests;
 using FieldControlApi.Resources;
 using System;
@@ -40,11 +42,38 @@ namespace FieldControl.CPlusSync.Core.Commands
 
         public void Run()
         {
-            foreach (var order in FilterNotCreatedOrders())
+            var orders = FilterNotCreatedOrders();
+
+            FileLog.WriteLine("Enviando ordens para o Field Control");
+            FileLog.WriteJson(orders);
+
+            foreach (var order in orders)
             {
-                var activity = _conveter.ConvertFrom(order);
-                var request = new CreateActivityRequest(activity);
-                _fieldControlClient.Execute(request);
+                try
+                {
+                    var activity = _conveter.ConvertFrom(order);
+
+                    FileLog.WriteJson(order);
+                    FileLog.WriteJson(activity);
+
+                    var request = new CreateActivityRequest(activity);
+                    _fieldControlClient.Execute(request);
+                }
+                catch (RequestErrorException fex)
+                {
+                    FileLog.WriteLine("Field Control Api Error " + fex.Message);
+                    FileLog.WriteLine(fex.ResponseBody);
+                }
+                catch (ApplicationException aex)
+                {
+                    FileLog.WriteLine("Sync App Error " + aex.Message);
+                    FileLog.WriteLine(aex.StackTrace);
+                }
+                catch (Exception ex)
+                {
+                    FileLog.WriteLine("Generic Error " + ex.Message);
+                    FileLog.WriteLine(ex.StackTrace);
+                }
             }
         }
     }
