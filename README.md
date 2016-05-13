@@ -34,6 +34,7 @@ As conversões das informações do C-Plus para o Field Control são todas basea
 | ------------- | ------------- | ---------------: | :------------------: |
 | Técnico       | Colaborador |              Nome | Não |
 | Serviço/Produto     | Tipo de Atividade |   Nome | Não |
+| Status     | Situação |   Nome | Não |
 | Cliente       | Cliente     |    Nome | Sim |
 
 Ou seja, essas informações devem ser *exatamente* *iguais* em ambos os sistemas. Um técnico com nome de `Neymar Junior` no C-Plus será correspondido por um Colaborador com nome de `Neymar Junior` no Field Control.
@@ -41,6 +42,27 @@ Ou seja, essas informações devem ser *exatamente* *iguais* em ambos os sistema
 `Técnico` e `Colaborador`, `Serviço/Produto` e `Tipo de Atividade` devem estar previamente cadastrados em ambos os sistemas, caso contrário, a ordem de serviço não será enviada para o Field Control.
 
 Para o dado `Cliente`, caso não exista um cliente com o Nome exatamente iguais em ambos os sitemas, o sincronizador criará um novo cliente no Field Control.
+
+O Field Control não permite a criação de status/situação para as atividades, é preciso criar e usar os seguintes status/situação no C-Plus: 
+ - Agendada
+ - Em andamento
+ - Concluída
+ - Reportada como problema
+ - Cancelada
+
+### Informações sincronizadas
+
+Atualmente as informações são:
+
+##### C-Plus para Field Control
+  - Ordem de serviço (Descrição, Data, Técnico, Serviço, Cliente)
+
+Ordens de serviço criadas como `Externa` são enviadas para o Field Control
+  
+##### Field Control para C-Plus
+  - Status da Atividade
+
+Atividades que tem sua situação alterada no Field Control são atualizadas com seu novo Status.
 
 ### Parâmetros
 
