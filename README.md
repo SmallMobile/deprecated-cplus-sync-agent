@@ -70,7 +70,7 @@ O executável `FieldControl.CPlusSync.ConsoleApp.exe` aceita dois parametros
 
 | Parâmetro        | Valor padrão | Formato | Exemplo |
 | ------------- | ------------- | :---------------: | :-------------: |
-| Data da sincronização       | Colaborador |              yyyy-MM-dd | 2015-05-15 |
+| Data da sincronização       | Data atual |              yyyy-MM-dd | 2015-05-15 |
 | Verbose logging    | false |   true/false | true |
 
 Exemplo de sincronização com dia específico
