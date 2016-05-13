@@ -40,11 +40,11 @@ Ou seja, essas informações devem ser *exatamente* *iguais* em ambos os sistema
 
 `Técnico` e `Colaborador`, `Serviço/Produto` e `Tipo de Atividade` devem estar previamente cadastrados em ambos os sistemas, caso contrário, a ordem de serviço não será enviada para o Field Control.
 
-Para o dado `Cliente`, caso não exista um cliente com o Nome exato em ambos os sitemas, o sincronizador criará um novo cliente no Field Control.
+Para o dado `Cliente`, caso não exista um cliente com o Nome exatamente iguais em ambos os sitemas, o sincronizador criará um novo cliente no Field Control.
 
 ### Parâmetros
 
-O executável `FieldControl.CPlusSync.ConsoleApp.exe.config` aceita dois parametros
+O executável `FieldControl.CPlusSync.ConsoleApp.exe` aceita dois parametros
 
 | Parâmetro        | Valor padrão | Formato | Exemplo |
 | ------------- | ------------- | :---------------: | :-------------: |
