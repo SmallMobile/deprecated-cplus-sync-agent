@@ -4,7 +4,7 @@ Sincronizador de ordem de serviços e atividades entre o C-Plus e o Field Contro
 
 ### Configurações
 
-É necessario configurar algumas variavéis antes de executar o sicronizador, essas variavéis estáo no arquivo ```FieldControl.CPlusSync.ConsoleApp.exe.config``` e são elas:
+É necessario configurar algumas variavéis antes de executar o sicronizador, essas variavéis estão no arquivo ```FieldControl.CPlusSync.ConsoleApp.exe.config``` e são elas:
 
   - ```logging.folderPath``` - Pasta de destino para os logs do sincronizador
   - ```google.geoCoderKey``` - Google ApiKey para decodificação de endereços (transformar ruas e números em latitude e longitude) 
