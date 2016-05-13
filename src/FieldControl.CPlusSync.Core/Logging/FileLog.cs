@@ -8,7 +8,7 @@ namespace FieldControl.CPlusSync.Core.Logging
     public static class FileLog
     {
         private static string _fileName = null;
-        private static string _filePath = ConfigurationManager.AppSettings["logging.filePath"];
+        private static string _filePath = ConfigurationManager.AppSettings["logging.folderPath"];
         private static string _fullFilePath = null;
         public static bool Verbose { get; set; }
 
@@ -22,6 +22,14 @@ namespace FieldControl.CPlusSync.Core.Logging
         {
             if (_fullFilePath == null)
             {
+                if (!string.IsNullOrEmpty(_filePath))
+                {
+                    if (!Directory.Exists(_filePath))
+                    {
+                        Directory.CreateDirectory(_filePath);
+                    }
+                }
+
                 CreateName();
             }
 
@@ -33,7 +41,8 @@ namespace FieldControl.CPlusSync.Core.Logging
 
         public static void WriteJson(object obj)
         {
-            if (Verbose) { 
+            if (Verbose)
+            {
                 WriteLine(JsonConvert.SerializeObject(obj, Formatting.None));
             }
         }
