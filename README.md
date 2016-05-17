@@ -41,7 +41,7 @@ Ou seja, essas informações devem ser *exatamente* *iguais* em ambos os sistema
 
 `Técnico` e `Colaborador`, `Serviço/Produto` e `Tipo de Atividade` devem estar previamente cadastrados em ambos os sistemas, caso contrário, a ordem de serviço não será enviada para o Field Control.
 
-Para o dado `Cliente`, caso não exista um cliente com o Nome exatamente iguais em ambos os sitemas, o sincronizador criará um novo cliente no Field Control.
+Para o dado `Cliente`, caso não exista um cliente com o Nome exatamente _igual_ em ambos os sistemas, o sincronizador criará um novo cliente no Field Control.
 
 O Field Control não permite a criação de situação para as atividades, por isso, é preciso criar e usar os seguintes status no C-Plus: 
  - Agendada
@@ -55,14 +55,14 @@ O Field Control não permite a criação de situação para as atividades, por i
 Atualmente as informações são:
 
 ##### C-Plus para Field Control
-  - Ordem de serviço (Descrição, Data, Técnico, Serviço, Cliente)
+  - Ordem de serviço para Atividade (Descrição, Data, Técnico, Serviço, Cliente)
 
-Ordens de serviço criadas como `Externa` são enviadas para o Field Control
+Ordens de serviço criadas como `Externa` são enviadas como atividades para o Field Control.
   
 ##### Field Control para C-Plus
-  - Status da Atividade
+  - Situação da atividade para status da ordem de serviço
 
-Atividades que tem sua situação alterada no Field Control são atualizadas com seu novo Status.
+Atividades que tem sua situação alterada no Field Control são atualizadas com seu novo Status no C-Plus.
 
 ### Parâmetros
 
