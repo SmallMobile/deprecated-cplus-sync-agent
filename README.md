@@ -5,6 +5,10 @@ Sincronizador de ordem de serviços e atividades entre o C-Plus e o Field Contro
 ### Download
 Realize o [download](https://github.com/FieldControl/cplus-sync-agent/releases/download/v1.0/FieldControlCPlusSync.zip) da última versão do sincronizador no menu Release.
 
+### Instalação
+
+A recomendação é que o sincronizador seja uma tarefa no [Task Scheduler do Windows](https://technet.microsoft.com/en-us/library/cc721931(v=ws.11).aspx) com um intervalo configurado de *20 minutos* ou mais.
+
 ### Configurações
 
 É necessario configurar algumas variavéis antes de executar o sicronizador, essas variavéis estão no arquivo ```FieldControl.CPlusSync.ConsoleApp.exe.config``` e são elas:
@@ -81,8 +85,3 @@ Exemplo de sincronização com dia específico
 ```code
   FieldControl.CPlusSync.ConsoleApp.exe 2015-05-15 true
 ```
-
-### Instalação
-
-A recomendação é que o sincronizador seja uma tarefa no [Task Scheduler do Windows](https://technet.microsoft.com/en-us/library/cc721931(v=ws.11).aspx) com um intervalo configurado de *20 minutos* ou mais.
-
