@@ -3,7 +3,7 @@
 Sincronizador de ordem de serviços e atividades entre o C-Plus e o Field Control
 
 ### Download
-Realize o [download](https://github.com/FieldControl/cplus-sync-agent/releases/download/v1.0/FieldControlCPlusSync.zip) da última versão do sincronizador no menu Release.
+Realize o [download](https://github.com/FieldControl/cplus-sync-agent/releases/download/v1.1/Release.zip) da última versão do sincronizador no menu [Release](https://github.com/FieldControl/cplus-sync-agent/releases/tag/v1.1).
 
 ### Instalação
 
