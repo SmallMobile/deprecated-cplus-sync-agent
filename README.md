@@ -11,10 +11,11 @@ A recomendação é que o sincronizador seja uma tarefa no [Task Scheduler do Wi
 
 ### Execução
 
-Os dados sempre serão sincronizados em período de 7 dias, sendo que a data de início pode ser especificada via paramêtro.
-Caso nenhuma data seja fornecida como paramêtro, serão sincronizados 7 dias a partir da data atual (valor padrão)
+Os dados sempre serão sincronizados em período de ```7 dias```, sendo que a data de início pode ser especificada via paramêtro.
+Caso nenhuma data seja fornecida como paramêtro, serão sincronizados 7 dias a partir da ```data atual``` (valor padrão)
+
 Por exemplo:
-  Dado que hoje é dia 01/06/2016, serão sincronizados dados de 01/06 até 07/06.
+  - Dado que hoje é dia ```01/06/2016```, serão sincronizados dados de ```01/06``` até ```07/06```.
 
 ### Configurações
 
