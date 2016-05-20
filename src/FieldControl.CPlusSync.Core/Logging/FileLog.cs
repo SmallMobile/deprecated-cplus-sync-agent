@@ -10,6 +10,7 @@ namespace FieldControl.CPlusSync.Core.Logging
         private static string _fileName = null;
         private static string _filePath = ConfigurationManager.AppSettings["logging.folderPath"];
         private static string _fullFilePath = null;
+
         public static bool Verbose { get; set; }
 
         private static void CreateName()

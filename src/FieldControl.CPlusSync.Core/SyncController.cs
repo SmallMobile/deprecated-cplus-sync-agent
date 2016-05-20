@@ -12,16 +12,26 @@ using Geocoding;
 using Geocoding.Google;
 using System;
 using System.Collections.Generic;
+using FieldControlApi.Configuration;
+using FieldControl.CPlusSync.Core.Caching;
 
 namespace FieldControl.CPlusSync.Core
 {
     public class SyncController
     {
-        public void SyncDate(DateTime date) {
 
-            var fieldControlConfiguration = new FieldControlApi.Configuration.AppSettingsConfiguration();
+        public void SyncDate(DateTime from, DateTime to) {
+
+            var fieldControlConfiguration = new AppSettingsConfiguration();
             var client = new Client(fieldControlConfiguration);
-            client.Authenticate();
+
+            var authTokenCache = new SimpleFileCache("access_token");
+            var accessToken = authTokenCache.GetOrPut(() => {
+                client.Authenticate();
+                return client.AuthenticationToken;
+            });
+
+            client.AuthenticationToken = accessToken;
 
             FileLog.WriteJson(fieldControlConfiguration);
             FileLog.WriteJson(client);
@@ -32,17 +42,20 @@ namespace FieldControl.CPlusSync.Core
 
             FileLog.WriteJson(cPlusConfiguration);
 
-            var orders = cPlusOrdersQuery.Execute(date);
-            var activities = client.Execute(new GetActivitiesRequest(date));
+            var orders = cPlusOrdersQuery.Execute(from, to);
+            var activities = client.Execute(new GetActivitiesRequest(from, to));
 
             FileLog.WriteJson(orders);
             FileLog.WriteJson(activities);
 
             var geoCoderConfiguration = new AppSettingsGeoCoderConfiguration();
-            IGeocoder geocoder = new GoogleGeocoder() { ApiKey = geoCoderConfiguration.GoogleKey };
+            IGeocoder geocoder = new GoogleGeocoder() {
+                ApiKey = geoCoderConfiguration.GoogleKey
+            };
 
             var services = client.Execute(new GetServicesRequest());
-            var employees = client.Execute(new GetActiveEmployeesRequest(date));
+            var employees = client.Execute(new GetActiveEmployeesRequest(from));
+
             var activityConveter = new ActivityConverter(
                 services: services,
                 employees: employees,
