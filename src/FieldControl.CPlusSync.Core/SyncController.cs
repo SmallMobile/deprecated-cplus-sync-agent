@@ -19,14 +19,14 @@ namespace FieldControl.CPlusSync.Core
 {
     public class SyncController
     {
-
+ 
         public void SyncDate(DateTime from, DateTime to) {
 
-            var fieldControlConfiguration = new AppSettingsConfiguration();
+            var fieldControlConfiguration = new FieldControlApi.Configuration.AppSettingsConfiguration();
             var client = new Client(fieldControlConfiguration);
 
-            var authTokenCache = new SimpleFileCache("access_token");
-            var accessToken = authTokenCache.GetOrPut(() => {
+            var authenticationCache = new SimpleFileCache("authentication");
+            var accessToken = authenticationCache.GetOrPut(() => {
                 client.Authenticate();
                 return client.AuthenticationToken;
             });

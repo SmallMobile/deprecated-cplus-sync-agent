@@ -40,7 +40,7 @@ namespace FieldControl.CPlusSync.Core.Commands
 
         public void Run()
         {
-            FileLog.WriteLine("Atualizando atividades no C-Plus");
+            FileLog.WriteLineIf("Atualizando atividades no C-Plus");
             FileLog.WriteJson(_activities);
 
             foreach (var activity in _activities)
@@ -63,8 +63,8 @@ namespace FieldControl.CPlusSync.Core.Commands
                 }
                 catch (Exception ex)
                 {
-                    FileLog.WriteLine("Generic Error " + ex.Message);
-                    FileLog.WriteLine(ex.StackTrace);
+                    FileLog.WriteError("Generic Error " + ex.Message);
+                    FileLog.WriteError(ex.StackTrace);
                 }
             }
         }

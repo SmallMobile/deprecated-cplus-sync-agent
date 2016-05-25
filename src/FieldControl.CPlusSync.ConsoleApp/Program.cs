@@ -7,6 +7,9 @@ namespace FieldControl.CPlusSync.ConsoleApp
 {
     class Program
     {
+        public static string toStringDateTimePtBr = "dd/MM/yyyy HH:mm";
+        public static string toStringDatePtBr = "dd/MM/yyyy";
+
         static void Main(string[] args)
         {
             DateTime from = DateTime.Today;
@@ -21,19 +24,20 @@ namespace FieldControl.CPlusSync.ConsoleApp
                 FileLog.Verbose = Convert.ToBoolean(args[1]);
             }
 
-            FileLog.WriteLine(
-                string.Format("Sincronizando dados de {0} até {1}", from.ToShortDateString(), to.ToShortDateString())
-            );
-
             try
             {
                 new SyncController().SyncDate(from, to);
-                FileLog.WriteLine("Dados sincronizados com sucesso.");
+
+                FileLog.WriteLine(
+                    string.Format("[{0}] Dados sincronizados de {1} até {2}.", 
+                                 DateTime.Now.ToString(toStringDateTimePtBr),
+                                 from.ToString(toStringDatePtBr),
+                                 to.ToString(toStringDatePtBr)));
             }
             catch (Exception ex)
             {
-                FileLog.WriteLine("Erro ao sincronizar informacoes: " + ex.Message);
-                FileLog.WriteLine(ex.StackTrace); 
+                FileLog.WriteError("[Root] Erro ao sincronizar informações: " + ex.Message);
+                FileLog.WriteError(ex.StackTrace); 
             }
         }
     }

@@ -44,7 +44,7 @@ namespace FieldControl.CPlusSync.Core.Commands
         {
             var orders = FilterNotCreatedOrders();
 
-            FileLog.WriteLine("Enviando ordens para o Field Control");
+            FileLog.WriteLineIf("Enviando ordens para o Field Control");
             FileLog.WriteJson(orders);
 
             foreach (var order in orders)
@@ -61,18 +61,18 @@ namespace FieldControl.CPlusSync.Core.Commands
                 }
                 catch (RequestErrorException fex)
                 {
-                    FileLog.WriteLine("Field Control Api Error " + fex.Message);
-                    FileLog.WriteLine(fex.ResponseBody);
+                    FileLog.WriteError("Field Control Api Error " + fex.Message);
+                    FileLog.WriteError(fex.ResponseBody);
                 }
                 catch (ApplicationException aex)
                 {
-                    FileLog.WriteLine("Sync App Error " + aex.Message);
-                    FileLog.WriteLine(aex.StackTrace);
+                    FileLog.WriteError("Sync App Error " + aex.Message);
+                    FileLog.WriteError(aex.StackTrace);
                 }
                 catch (Exception ex)
                 {
-                    FileLog.WriteLine("Generic Error " + ex.Message);
-                    FileLog.WriteLine(ex.StackTrace);
+                    FileLog.WriteError("Generic Error " + ex.Message);
+                    FileLog.WriteError(ex.StackTrace);
                 }
             }
         }
